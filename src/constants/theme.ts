@@ -1,54 +1,43 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://unistyl.es/), etc.
- */
-
-import '@/global.css';
-
 import { Platform } from 'react-native';
 
+/**
+ * 全局配色。浅色 / 深色两套，跟随系统切换。
+ * accent：主题色；danger：零库存、错误；success：入库。
+ */
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
+    text: '#1C1C1E',
+    textSecondary: '#6B6F76',
+    background: '#F5F5F7',
+    card: '#FFFFFF',
+    border: '#E4E4E8',
+    backgroundElement: '#EDEDF0',
     backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    accent: '#4F5BD5',
+    accentSoft: '#E8EAFB',
+    success: '#2F9E6B',
+    danger: '#E5484D',
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
+    text: '#F2F2F4',
+    textSecondary: '#A1A5AC',
+    background: '#0B0B0D',
+    card: '#1A1A1D',
+    border: '#2C2C30',
+    backgroundElement: '#232327',
     backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    accent: '#8A93F0',
+    accentSoft: '#262A4D',
+    success: '#4CC38A',
+    danger: '#FF6369',
   },
 } as const;
 
 export type ThemeColor = keyof typeof Colors.light & keyof typeof Colors.dark;
 
 export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: 'var(--font-display)',
-    serif: 'var(--font-serif)',
-    rounded: 'var(--font-rounded)',
-    mono: 'var(--font-mono)',
-  },
+  ios: { sans: 'system-ui', rounded: 'ui-rounded', mono: 'ui-monospace' },
+  default: { sans: 'normal', rounded: 'normal', mono: 'monospace' },
 });
 
 export const Spacing = {
@@ -61,5 +50,12 @@ export const Spacing = {
   six: 64,
 } as const;
 
+export const Radius = {
+  small: 8,
+  medium: 14,
+  large: 20,
+} as const;
+
+/** 原生底部 Tab 栏大致高度，页面底部留白用 */
 export const BottomTabInset = Platform.select({ ios: 50, android: 80 }) ?? 0;
 export const MaxContentWidth = 800;
